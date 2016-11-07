@@ -17,11 +17,22 @@ defmodule Discuss.Router do
     pipe_through :browser
 
     get "/", TopicController, :index
-    get "/topics/new", TopicController, :new
-    post "/topics", TopicController, :create
-    get "/topics/:id/edit", TopicController, :edit
-    put "/topics/:id", TopicController, :update
-    delete "/topics/:id", TopicController, :delete
+  end
 
+  scope "/topics", Discuss do
+    pipe_through :browser
+
+    get "/new", TopicController, :new
+    post "/", TopicController, :create
+    get "/:id/edit", TopicController, :edit
+    put "/:id", TopicController, :update
+    delete "/:id", TopicController, :delete
+  end
+
+  scope "/auth", Discuss do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 end
