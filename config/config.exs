@@ -25,10 +25,7 @@ config :ueberauth, Ueberauth,
     github: {Ueberauth.Strategy.Github, []}
   ]
 
-config :ueberauth, Ueberauth.Stategy.Github.OAuth,
-  client_id: "xxx",
-  client_secret: "xxx"
-  
-  # for heroku
-  # client_id: System.get_env("github_client_id"),
-  # client_secret: System.get_env("github_client_secret")
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
