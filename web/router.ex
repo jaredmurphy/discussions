@@ -23,6 +23,7 @@ defmodule Discuss.Router do
   scope "/topics", Discuss do
     pipe_through :browser
 
+    get "/:id", TopicController, :show
     get "/new", TopicController, :new
     post "/", TopicController, :create
     get "/:id/edit", TopicController, :edit
